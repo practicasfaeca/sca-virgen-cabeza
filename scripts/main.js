@@ -144,6 +144,54 @@
   }
 
   // -----------------------------------------------------------
+  // 4b. Contadores animados (página cooperativa, datos del olivar).
+  //     Cualquier elemento con data-contador-final se anima de 0 a su valor
+  //     cuando entra en viewport. Acepta prefijo, sufijo y decimales.
+  // -----------------------------------------------------------
+  function inicializarContadores() {
+    const contadores = document.querySelectorAll('[data-contador-final]');
+    if (!contadores.length) return;
+
+    const animar = (el) => {
+      const final = parseFloat(el.dataset.contadorFinal);
+      const decimales = parseInt(el.dataset.contadorDecimales || '0', 10);
+      const prefijo = el.dataset.contadorPrefijo || '';
+      const sufijo = el.dataset.contadorSufijo || '';
+      const duracion = 1500;
+      const inicio = performance.now();
+
+      // Easing easeOutCubic — termina suave
+      const ease = (t) => 1 - Math.pow(1 - t, 3);
+
+      const tick = (ahora) => {
+        const t = Math.min(1, (ahora - inicio) / duracion);
+        const valor = final * ease(t);
+        // En español los decimales se escriben con coma.
+        const formateado = valor.toFixed(decimales).replace('.', ',');
+        el.textContent = prefijo + formateado + sufijo;
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    if (!('IntersectionObserver' in window)) {
+      contadores.forEach(animar);
+      return;
+    }
+
+    const io = new IntersectionObserver((entradas, observer) => {
+      entradas.forEach((entrada) => {
+        if (entrada.isIntersecting) {
+          animar(entrada.target);
+          observer.unobserve(entrada.target);
+        }
+      });
+    }, { threshold: 0.4 });
+
+    contadores.forEach((c) => io.observe(c));
+  }
+
+  // -----------------------------------------------------------
   // 5. Botón flotante "subir arriba"
   //    Aparece tras 400px de scroll. Click → scroll suave al inicio.
   // -----------------------------------------------------------
@@ -196,6 +244,25 @@
   }
 
   // -----------------------------------------------------------
+  // 6b. Reactividad del header al carrito.
+  //     Cuando carrito.js dispara 'carrito-cambiado', refrescamos
+  //     el contador. Cuando dispara 'carrito-bounce' (al añadir),
+  //     animamos el icono con un rebote sutil.
+  // -----------------------------------------------------------
+  function inicializarReactividadCarrito() {
+    window.addEventListener('carrito-cambiado', actualizarContadorCarrito);
+
+    window.addEventListener('carrito-bounce', () => {
+      const carrito = document.querySelector('.encabezado__carrito');
+      if (!carrito) return;
+      carrito.classList.remove('encabezado__carrito--rebota');
+      // forzar reflow para reiniciar la animación
+      void carrito.offsetWidth;
+      carrito.classList.add('encabezado__carrito--rebota');
+    });
+  }
+
+  // -----------------------------------------------------------
   // Arranque
   // -----------------------------------------------------------
   document.addEventListener('DOMContentLoaded', () => {
@@ -204,7 +271,9 @@
     inicializarMenuMovil();
     inicializarAparicionScroll();
     inicializarCronologia();
+    inicializarContadores();
     inicializarBotonArriba();
     actualizarContadorCarrito();
+    inicializarReactividadCarrito();
   });
 })();

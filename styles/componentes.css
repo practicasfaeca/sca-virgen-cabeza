@@ -133,6 +133,15 @@
 }
 .encabezado__carrito-contador[data-cantidad="0"] { display: none; }
 
+/* Bounce sutil cuando se añade un producto al carrito */
+@keyframes carrito-rebote {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.18); }
+  60%  { transform: scale(0.94); }
+  100% { transform: scale(1); }
+}
+.encabezado__carrito--rebota { animation: carrito-rebote 500ms ease; }
+
 /* Hamburguesa */
 .encabezado__hamburguesa {
   display: inline-flex;
@@ -276,6 +285,250 @@
 }
 .subir-arriba:hover { background-color: var(--color-dorado); color: var(--color-carbon); }
 .subir-arriba svg { width: 18px; height: 18px; }
+
+/* ----------------------------------------------------------
+   Tarjeta de producto (compartida entre tienda y "relacionados")
+   ---------------------------------------------------------- */
+.tarjeta-producto {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-blanco);
+  border: 1px solid var(--color-gris-suave);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform var(--transicion-rapida),
+              box-shadow var(--transicion-rapida),
+              border-color var(--transicion-rapida);
+}
+.tarjeta-producto:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sombra-media);
+  border-color: var(--color-dorado);
+}
+.tarjeta-producto__enlace {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+.tarjeta-producto__enlace:hover { color: inherit; }
+.tarjeta-producto__imagen-wrapper {
+  background-color: var(--color-crema);
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  overflow: hidden;
+}
+.tarjeta-producto__imagen {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform var(--transicion-media);
+}
+.tarjeta-producto:hover .tarjeta-producto__imagen { transform: scale(1.04); }
+.tarjeta-producto__cuerpo {
+  padding: 18px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.tarjeta-producto__variedad {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--color-dorado);
+}
+.tarjeta-producto__nombre {
+  font-family: var(--fuente-titular);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-oliva-oscuro);
+  margin: 4px 0 6px;
+  line-height: 1.2;
+}
+.tarjeta-producto__formato {
+  font-size: 13px;
+  color: var(--color-tierra);
+}
+.tarjeta-producto__precio {
+  margin-top: 8px;
+  font-family: var(--fuente-titular);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--color-oliva-oscuro);
+}
+.tarjeta-producto__anyadir {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background-color: var(--color-oliva-oscuro);
+  color: var(--color-crema);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity var(--transicion-rapida),
+              transform var(--transicion-rapida),
+              background-color var(--transicion-rapida);
+}
+.tarjeta-producto:hover .tarjeta-producto__anyadir,
+.tarjeta-producto:focus-within .tarjeta-producto__anyadir {
+  opacity: 1;
+  transform: translateY(0);
+}
+.tarjeta-producto__anyadir:hover { background-color: var(--color-dorado); color: var(--color-carbon); }
+/* En táctil mostramos siempre el botón */
+@media (hover: none) {
+  .tarjeta-producto__anyadir { opacity: 1; transform: translateY(0); }
+}
+
+/* ----------------------------------------------------------
+   Chips genéricos (etiquetas pequeñas)
+   ---------------------------------------------------------- */
+.chip {
+  display: inline-block;
+  padding: 4px 10px;
+  background-color: var(--color-gris-suave);
+  color: var(--color-carbon);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 999px;
+}
+.chip--destacado {
+  background-color: var(--color-dorado);
+  color: var(--color-carbon);
+}
+
+/* Chip seleccionable (formatos) */
+.chip-formato {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  background-color: var(--color-blanco);
+  color: var(--color-carbon);
+  border: 1.5px solid var(--color-gris-suave);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--transicion-rapida),
+              border-color var(--transicion-rapida),
+              color var(--transicion-rapida);
+}
+.chip-formato:hover { border-color: var(--color-tierra); }
+.chip-formato--activo {
+  background-color: var(--color-oliva-oscuro);
+  color: var(--color-crema);
+  border-color: var(--color-oliva-oscuro);
+}
+.chip-formato--unico {
+  background-color: var(--color-crema);
+  border-color: var(--color-gris-suave);
+  cursor: default;
+  color: var(--color-tierra);
+}
+
+/* ----------------------------------------------------------
+   Selector de cantidad ( – nº + )
+   ---------------------------------------------------------- */
+.cantidad-control {
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid var(--color-gris-suave);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.cantidad-control__boton {
+  width: 40px;
+  height: 44px;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-oliva-oscuro);
+  cursor: pointer;
+  transition: background-color var(--transicion-rapida);
+}
+.cantidad-control__boton:hover { background-color: var(--color-crema); }
+.cantidad-control__input {
+  width: 48px;
+  height: 44px;
+  border: 0;
+  border-left: 1px solid var(--color-gris-suave);
+  border-right: 1px solid var(--color-gris-suave);
+  text-align: center;
+  font-family: var(--fuente-cuerpo);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-carbon);
+  background-color: var(--color-blanco);
+  -moz-appearance: textfield;
+}
+.cantidad-control__input::-webkit-outer-spin-button,
+.cantidad-control__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ----------------------------------------------------------
+   Miniaturas de galería
+   ---------------------------------------------------------- */
+.miniaturas {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.miniatura {
+  width: 80px; height: 80px;
+  padding: 6px;
+  background-color: var(--color-crema);
+  border: 1.5px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color var(--transicion-rapida), transform var(--transicion-rapida);
+}
+.miniatura img { width: 100%; height: 100%; object-fit: contain; }
+.miniatura:hover { transform: translateY(-2px); }
+.miniatura--activa { border-color: var(--color-oliva-oscuro); }
+
+/* ----------------------------------------------------------
+   Toast de confirmación
+   ---------------------------------------------------------- */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(20px);
+  background-color: var(--color-oliva-oscuro);
+  color: var(--color-crema);
+  padding: 14px 22px;
+  border-radius: 4px;
+  box-shadow: var(--sombra-media);
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 240ms ease, transform 240ms ease;
+  max-width: calc(100% - 32px);
+  text-align: center;
+}
+.toast--visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
 
 /* ----------------------------------------------------------
    Breakpoints
