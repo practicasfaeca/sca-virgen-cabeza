@@ -144,7 +144,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   transform: translateY(20px);
   transition: opacity 600ms ease, transform 600ms ease;
 }
-.es-visible > .al-aparecer-hijo { opacity: 1; transform: translateY(0); }
+.es-visible .al-aparecer-hijo { opacity: 1; transform: translateY(0); }
 .es-visible > .al-aparecer-hijo:nth-child(1) { transition-delay: 0ms; }
 .es-visible > .al-aparecer-hijo:nth-child(2) { transition-delay: 50ms; }
 .es-visible > .al-aparecer-hijo:nth-child(3) { transition-delay: 100ms; }
