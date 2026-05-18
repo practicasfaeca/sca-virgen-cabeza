@@ -262,6 +262,67 @@
     });
   }
 
+
+  // -----------------------------------------------------------
+  // 7. Acceso socios — panel desplegable en el header.
+  //    Demo estética: el formulario no envía a ningún sitio.
+  // -----------------------------------------------------------
+  function inicializarAcceso() {
+    const boton = document.getElementById('abrir-acceso');
+    const panel = document.getElementById('acceso-panel');
+    if (!boton || !panel) return;
+
+    const cerrar = () => {
+      boton.setAttribute('aria-expanded', 'false');
+      panel.setAttribute('aria-hidden', 'true');
+    };
+    const abrir = () => {
+      boton.setAttribute('aria-expanded', 'true');
+      panel.setAttribute('aria-hidden', 'false');
+      // Auto-foco en el primer campo para que se pueda escribir directamente.
+      const primer = panel.querySelector('input');
+      if (primer) primer.focus({ preventScroll: true });
+    };
+
+    boton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const abierto = boton.getAttribute('aria-expanded') === 'true';
+      abierto ? cerrar() : abrir();
+    });
+
+    // Click fuera del wrapper → cerrar.
+    document.addEventListener('click', (e) => {
+      if (boton.getAttribute('aria-expanded') !== 'true') return;
+      if (e.target.closest('.encabezado__acceso')) return;
+      cerrar();
+    });
+
+    // Escape → cerrar (sólo si está abierto).
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && boton.getAttribute('aria-expanded') === 'true') cerrar();
+    });
+
+    // El formulario no envía a ningún sitio: damos feedback visual
+    // y reseteamos los campos para reforzar la sensación de "demo".
+    const form = panel.querySelector('.acceso-form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        if (!btn) return;
+        const original = btn.textContent;
+        btn.textContent = 'Bienvenido/a';
+        btn.disabled = true;
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.disabled = false;
+          form.reset();
+          cerrar();
+        }, 1100);
+      });
+    }
+  }
+
   // -----------------------------------------------------------
   // Arranque
   // -----------------------------------------------------------
@@ -275,5 +336,6 @@
     inicializarBotonArriba();
     actualizarContadorCarrito();
     inicializarReactividadCarrito();
+    inicializarAcceso();
   });
 })();
