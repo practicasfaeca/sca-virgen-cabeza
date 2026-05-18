@@ -293,6 +293,353 @@
 .subir-arriba:hover { background-color: var(--color-dorado); color: var(--color-carbon); }
 .subir-arriba svg { width: 18px; height: 18px; }
 
+/* ============================================================
+   TARJETA-ACEITE — Tarjeta de la tienda (brief tienda.md)
+   Imagen arriba, info debajo, botón "Añadir al carrito" full-width.
+   Toda la tarjeta es clicable (abre modal) salvo el botón.
+   ============================================================ */
+.tarjeta-aceite {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-blanco);
+  border: 1px solid var(--color-gris-suave);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform var(--transicion-rapida),
+              box-shadow var(--transicion-rapida),
+              border-color var(--transicion-rapida);
+}
+.tarjeta-aceite:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sombra-media);
+  border-color: var(--color-tierra);
+}
+
+/* Capa transparente que cubre toda la tarjeta salvo el botón.
+   Pulsarla abre el modal. Va detrás de los botones por z-index. */
+.tarjeta-aceite__abrir {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+.tarjeta-aceite__abrir:focus-visible {
+  outline: 2px solid var(--color-dorado);
+  outline-offset: -4px;
+  border-radius: 2px;
+}
+
+.tarjeta-aceite__imagen-wrapper {
+  position: relative;
+  background-color: var(--color-crema);
+  aspect-ratio: 4 / 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: hidden;
+}
+.tarjeta-aceite__imagen {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform var(--transicion-media);
+}
+.tarjeta-aceite:hover .tarjeta-aceite__imagen { transform: scale(1.03); }
+
+/* Sello sobre la imagen (edición limitada, novedad, etc.) */
+.tarjeta-aceite__sello {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+}
+
+.tarjeta-aceite__cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 22px 22px 22px;
+}
+
+.tarjeta-aceite__nombre {
+  font-family: var(--fuente-titular);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--color-oliva-oscuro);
+  margin: 0;
+  line-height: 1.2;
+}
+.tarjeta-aceite__meta {
+  font-size: 13px;
+  color: var(--color-tierra);
+  margin: 0;
+}
+.tarjeta-aceite__precio {
+  font-family: var(--fuente-cuerpo);
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--color-carbon);
+  margin: 10px 0 16px;
+  letter-spacing: .2px;
+}
+
+/* El CTA queda sobre el .tarjeta-aceite__abrir gracias al z-index. */
+.tarjeta-aceite__cta {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+/* ============================================================
+   MODAL DE PRODUCTO (brief tienda.md)
+   ============================================================ */
+.modal-producto {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0;
+  pointer-events: none;
+}
+.modal-producto[aria-hidden="false"] {
+  pointer-events: auto;
+}
+
+.modal-producto__velo {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(26, 23, 27, 0.55);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.modal-producto[aria-hidden="false"] .modal-producto__velo { opacity: 1; }
+
+.modal-producto__caja {
+  position: relative;
+  background-color: var(--color-blanco);
+  width: 100%;
+  max-width: 920px;
+  max-height: 100vh;
+  overflow-y: auto;
+  /* En móvil ocupa pantalla completa; en desktop centrado con margen. */
+  margin: 0 auto;
+  border-radius: 0;
+  box-shadow: var(--sombra-media);
+  transform: scale(0.96);
+  opacity: 0;
+  transition: transform 300ms cubic-bezier(.2,.7,.3,1), opacity 200ms ease;
+}
+.modal-producto[aria-hidden="false"] .modal-producto__caja {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal-producto__cerrar {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 3;
+  width: 40px; height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-carbon);
+  background-color: var(--color-blanco);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background-color var(--transicion-rapida), color var(--transicion-rapida);
+}
+.modal-producto__cerrar:hover {
+  background-color: var(--color-oliva-oscuro);
+  color: var(--color-crema);
+}
+.modal-producto__cerrar svg { width: 18px; height: 18px; }
+
+.modal-producto__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.modal-producto__imagen-wrapper {
+  position: relative;
+  background-color: var(--color-crema);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+.modal-producto__imagen {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.modal-producto__sello {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+/* El atributo [hidden] tiene que ganar a .chip (display:inline-block).
+   Sin este !important el sello "Edición limitada" se ve en TODOS los productos. */
+.modal-producto__sello[hidden] { display: none !important; }
+
+.modal-producto__info {
+  padding: 32px 28px 40px;
+  display: flex;
+  flex-direction: column;
+}
+.modal-producto__nombre {
+  font-family: var(--fuente-titular);
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--color-oliva-oscuro);
+  margin: 0 0 6px;
+}
+.modal-producto__meta {
+  font-size: 13px;
+  color: var(--color-tierra);
+  letter-spacing: .3px;
+  margin: 0 0 16px;
+}
+.modal-producto__precio {
+  font-family: var(--fuente-titular);
+  font-weight: 600;
+  font-size: 30px;
+  color: var(--color-carbon);
+  margin: 0 0 24px;
+}
+
+.modal-producto__compra {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.modal-producto__anyadir {
+  width: 100%;
+  padding: 16px 24px;
+}
+
+/* Separador suave entre compra e intensidad */
+.modal-producto__compra + .intensidad {
+  padding-top: 28px;
+  border-top: 1px solid var(--color-gris-suave);
+}
+
+.modal-producto__descripcion {
+  margin: 24px 0 12px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-carbon);
+}
+.modal-producto__uso {
+  margin: 0;
+  padding: 14px 16px;
+  background-color: var(--color-crema);
+  border-left: 3px solid var(--color-dorado);
+  font-size: 14px;
+  color: var(--color-oliva-oscuro);
+  font-style: italic;
+}
+
+/* ============================================================
+   PERFIL SENSORIAL — bloque unificado dentro del modal
+   Tres atributos (frutado / amargor / picor) en una grid de 3 cols:
+     nombre | barra fina con relleno dorado | nivel textual
+   Sin barra Suave↔Intenso ni descriptor extra: las propias barras
+   y los niveles textuales comunican el perfil de un vistazo.
+   ============================================================ */
+.intensidad {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 8px 0;
+}
+.intensidad__titulo {
+  font-family: var(--fuente-cuerpo);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-dorado);
+  margin: 0;
+}
+
+.intensidad__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+.intensidad__atributo {
+  display: grid;
+  grid-template-columns: 70px 1fr 64px;
+  align-items: center;
+  gap: 14px;
+}
+
+.intensidad__nombre {
+  font-family: var(--fuente-cuerpo);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--color-oliva-oscuro);
+}
+
+.intensidad__pista {
+  position: relative;
+  display: block;
+  height: 4px;
+  background-color: var(--color-gris-suave);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.intensidad__relleno {
+  --w: 0%;
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--w);
+  background:
+    linear-gradient(90deg,
+      var(--color-dorado) 0%,
+      #b89651 100%);
+  border-radius: 999px;
+  /* Transición suave cuando el modal cambia de producto */
+  transition: width 480ms cubic-bezier(.2,.7,.3,1);
+}
+
+.intensidad__nivel {
+  font-family: var(--fuente-titular);
+  font-size: 15px;
+  font-style: italic;
+  color: var(--color-tierra);
+  text-align: right;
+  letter-spacing: .2px;
+}
+
+/* En pantallas muy estrechas, comprimimos la columna del nombre */
+@media (max-width: 380px) {
+  .intensidad__atributo {
+    grid-template-columns: 60px 1fr 52px;
+    gap: 10px;
+  }
+  .intensidad__nivel { font-size: 14px; }
+}
+
 /* ----------------------------------------------------------
    Tarjeta de producto (compartida entre tienda y "relacionados")
    ---------------------------------------------------------- */
@@ -512,12 +859,13 @@
 
 /* ----------------------------------------------------------
    Toast de confirmación
+   Brief: esquina inferior derecha, 3 segundos.
    ---------------------------------------------------------- */
 .toast {
   position: fixed;
-  left: 50%;
-  bottom: 24px;
-  transform: translateX(-50%) translateY(20px);
+  right: 20px;
+  bottom: 20px;
+  transform: translateY(20px);
   background-color: var(--color-oliva-oscuro);
   color: var(--color-crema);
   padding: 14px 22px;
@@ -530,11 +878,24 @@
   pointer-events: none;
   transition: opacity 240ms ease, transform 240ms ease;
   max-width: calc(100% - 32px);
-  text-align: center;
 }
 .toast--visible {
   opacity: 1;
-  transform: translateX(-50%) translateY(0);
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.toast__link {
+  display: inline-block;
+  margin-left: 14px;
+  color: var(--color-dorado);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transicion-rapida);
+}
+.toast__link:hover {
+  color: var(--color-dorado);
+  border-bottom-color: var(--color-dorado);
 }
 
 /* ----------------------------------------------------------
@@ -544,6 +905,34 @@
   .pie__grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; }
   .pie__franja { flex-direction: row; justify-content: space-between; padding: 28px 0; }
   .pie__copyright { text-align: right; }
+
+  /* Modal: dos columnas (imagen | info) y centrado con margen */
+  .modal-producto {
+    align-items: center;
+    padding: 32px;
+  }
+  .modal-producto__caja {
+    border-radius: 6px;
+    max-height: calc(100vh - 64px);
+  }
+  .modal-producto__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .modal-producto__imagen-wrapper {
+    aspect-ratio: auto;
+    min-height: 100%;
+  }
+  .modal-producto__info {
+    padding: 44px 40px 44px;
+  }
+  .modal-producto__compra {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .modal-producto__anyadir {
+    flex: 1;
+  }
 }
 
 @media (min-width: 1024px) {
