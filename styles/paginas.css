@@ -2566,3 +2566,302 @@
     max-height: 540px;
   }
 }
+
+
+/* ============================================================
+   Sección: Aviso legal (aviso-legal.html)
+   Layout de lectura: cabecera corta + TOC sticky + cuerpo largo.
+   Estilo discreto y muy legible — esto NO es marketing.
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   Cabecera de la página legal — bloque corto, sobrio
+   ---------------------------------------------------------- */
+.legal-cabecera {
+  background-color: var(--color-oliva-oscuro);
+  color: var(--color-crema);
+  padding: 72px 0 56px;
+  margin-bottom: 56px;
+  /* Línea dorada de cierre, sutil */
+  border-bottom: 1px solid rgba(201, 169, 97, 0.25);
+}
+.legal-cabecera .eyebrow {
+  color: var(--color-dorado);
+  margin-bottom: 18px;
+}
+.legal-cabecera__titulo {
+  font-family: var(--fuente-titular);
+  font-size: clamp(32px, 4.5vw, 48px);
+  font-weight: 500;
+  color: var(--color-crema);
+  margin: 0 0 14px;
+  line-height: 1.10;
+  max-width: 22ch;
+}
+.legal-cabecera__meta {
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  color: rgba(245, 241, 232, 0.7);
+  margin: 0;
+}
+.legal-cabecera__meta time { color: var(--color-dorado); }
+
+/* ----------------------------------------------------------
+   Grid del cuerpo: TOC + artículo
+   ---------------------------------------------------------- */
+.legal {
+  padding-bottom: 80px;
+}
+.legal__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+/* ----------------------------------------------------------
+   Tabla de contenido
+   ---------------------------------------------------------- */
+.legal-toc {
+  background-color: var(--color-blanco);
+  border: 1px solid var(--color-gris-suave);
+  border-radius: 4px;
+  padding: 24px 22px;
+}
+.legal-toc__titulo {
+  font-family: var(--fuente-cuerpo);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-dorado);
+  margin: 0 0 16px;
+  /* Separador discreto bajo el título */
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--color-gris-suave);
+}
+.legal-toc__lista {
+  counter-reset: toc;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.legal-toc__lista li {
+  counter-increment: toc;
+  position: relative;
+}
+.legal-toc__lista a {
+  display: block;
+  padding: 8px 0 8px 32px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-carbon);
+  border-left: 2px solid transparent;
+  transition: color var(--transicion-rapida),
+              border-color var(--transicion-rapida),
+              padding-left var(--transicion-rapida);
+}
+.legal-toc__lista a::before {
+  content: counter(toc, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--fuente-cuerpo);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--color-tierra);
+  transition: color var(--transicion-rapida);
+}
+.legal-toc__lista a:hover,
+.legal-toc__lista a:focus-visible {
+  color: var(--color-oliva-oscuro);
+}
+.legal-toc__lista a:hover::before,
+.legal-toc__lista a:focus-visible::before {
+  color: var(--color-dorado);
+}
+.legal-toc__lista a[aria-current="true"] {
+  color: var(--color-oliva-oscuro);
+  border-left-color: var(--color-dorado);
+  padding-left: 36px;
+}
+.legal-toc__lista a[aria-current="true"]::before {
+  color: var(--color-dorado);
+}
+
+/* ----------------------------------------------------------
+   Artículo legal — secciones
+   ---------------------------------------------------------- */
+.legal-cuerpo {
+  max-width: 760px;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--color-carbon);
+}
+
+.legal-seccion {
+  position: relative;
+  padding: 36px 0;
+  border-top: 1px solid var(--color-gris-suave);
+  /* Offset visual para que los #anchors no queden pegados al header sticky */
+  scroll-margin-top: 96px;
+}
+.legal-seccion:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.legal-seccion__numero {
+  display: inline-block;
+  font-family: var(--fuente-cuerpo);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  color: var(--color-dorado);
+  margin-bottom: 8px;
+}
+
+.legal-seccion__titulo {
+  font-family: var(--fuente-titular);
+  font-size: clamp(22px, 2.6vw, 28px);
+  font-weight: 500;
+  color: var(--color-oliva-oscuro);
+  margin: 0 0 20px;
+  line-height: 1.20;
+}
+
+.legal-subtitulo {
+  font-family: var(--fuente-titular);
+  font-size: 19px;
+  font-weight: 500;
+  color: var(--color-oliva-oscuro);
+  margin: 28px 0 12px;
+  line-height: 1.3;
+}
+
+.legal-cuerpo p {
+  margin: 0 0 14px;
+}
+
+.legal-cuerpo a {
+  color: var(--color-oliva-oscuro);
+  text-decoration: underline;
+  text-decoration-color: var(--color-dorado);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+.legal-cuerpo a:hover {
+  color: var(--color-dorado);
+}
+
+/* Listas con bullet pequeño dorado */
+.legal-lista {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+}
+.legal-lista li {
+  position: relative;
+  padding: 4px 0 4px 22px;
+}
+.legal-lista li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 16px;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-dorado);
+  border-radius: 50%;
+}
+
+/* Lista de datos (Sección 1: razón social, CIF, etc.) */
+.legal-datos {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 18px 0 22px;
+  border-top: 1px solid var(--color-gris-suave);
+  border-bottom: 1px solid var(--color-gris-suave);
+}
+.legal-datos__fila {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-gris-suave);
+}
+.legal-datos__fila:last-child { border-bottom: 0; }
+.legal-datos dt {
+  font-family: var(--fuente-cuerpo);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--color-dorado);
+  margin: 0;
+}
+.legal-datos dd {
+  margin: 0;
+  color: var(--color-carbon);
+  font-size: 15px;
+}
+
+/* ----------------------------------------------------------
+   Bloque de contacto al final del aviso
+   ---------------------------------------------------------- */
+.legal-contacto {
+  margin-top: 48px;
+  padding: 32px 28px;
+  background-color: var(--color-crema);
+  border-left: 3px solid var(--color-dorado);
+  border-radius: 0 4px 4px 0;
+}
+.legal-contacto__titulo {
+  font-family: var(--fuente-titular);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--color-oliva-oscuro);
+  margin: 0 0 8px;
+}
+.legal-contacto__texto {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--color-carbon);
+  margin: 0;
+}
+
+/* ----------------------------------------------------------
+   Breakpoints
+   ---------------------------------------------------------- */
+@media (min-width: 768px) {
+  .legal-datos__fila {
+    grid-template-columns: 200px 1fr;
+    align-items: baseline;
+    gap: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .legal-cabecera {
+    padding: 96px 0 72px;
+    margin-bottom: 72px;
+  }
+  .legal__grid {
+    grid-template-columns: 280px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .legal-toc {
+    /* Sticky bajo el header */
+    position: sticky;
+    top: 104px;
+    max-height: calc(100vh - 124px);
+    overflow-y: auto;
+  }
+  .legal { padding-bottom: 120px; }
+}
