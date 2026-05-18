@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tienda · SCA Virgen de la Cabeza</title>
+  <meta name="description" content="Compra aceite de oliva virgen extra directamente desde nuestra cooperativa en Montejícar. Venta directa en origen. DOP Montes de Granada." />
+
+  <!-- Google Fonts: Cormorant Garamond (titular) + Inter (cuerpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Hojas de estilo: orden global → componentes → página actual -->
+  <link rel="stylesheet" href="styles/global.css" />
+  <link rel="stylesheet" href="styles/componentes.css" />
+  <link rel="stylesheet" href="styles/paginas.css" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+       HEADER GLOBAL (igual que el resto del sitio)
+       ============================================================ -->
+  <header class="encabezado" role="banner">
+    <div class="contenedor encabezado__inner">
+      <a href="index.html" class="encabezado__logo" aria-label="SCA Virgen de la Cabeza — Inicio">
+        <img src="assets/images/icons/LogoSCA.png" alt="" class="encabezado__logo-icono" aria-hidden="true" />
+        <span>
+          <span class="encabezado__logo-marca">Virgen de la Cabeza</span>
+          <span class="encabezado__logo-sub">SCA · Montejícar</span>
+        </span>
+      </a>
+
+      <nav class="encabezado__nav" aria-label="Navegación principal">
+        <ul class="encabezado__nav-lista">
+          <li><a class="encabezado__nav-link" href="index.html">Inicio</a></li>
+          <li><a class="encabezado__nav-link" href="la-cooperativa.html">La cooperativa</a></li>
+          <li><a class="encabezado__nav-link" href="tienda.html" aria-current="page">Tienda</a></li>
+          <li><a class="encabezado__nav-link" href="productos-agricolas.html">Productos agrícolas</a></li>
+          <li><a class="encabezado__nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="encabezado__acciones">
+        <a href="carrito.html" class="encabezado__carrito" aria-label="Ver carrito">
+          <svg class="encabezado__carrito-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 4h2l2.4 12.2a2 2 0 0 0 2 1.8h7.6a2 2 0 0 0 2-1.6L21 8H6" />
+            <circle cx="9" cy="20" r="1.5" />
+            <circle cx="17" cy="20" r="1.5" />
+          </svg>
+          <span class="encabezado__carrito-contador" data-contador-carrito data-cantidad="0">0</span>
+        </a>
+
+        <button id="abrir-menu-movil" class="encabezado__hamburguesa" type="button" aria-controls="menu-movil" aria-expanded="false" aria-label="Abrir menú">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <div id="menu-movil" class="menu-movil" aria-hidden="true">
+      <nav aria-label="Navegación móvil">
+        <ul class="menu-movil__lista">
+          <li><a class="menu-movil__link" href="index.html">Inicio</a></li>
+          <li><a class="menu-movil__link" href="la-cooperativa.html">La cooperativa</a></li>
+          <li><a class="menu-movil__link" href="tienda.html">Tienda</a></li>
+          <li><a class="menu-movil__link" href="productos-agricolas.html">Productos agrícolas</a></li>
+          <li><a class="menu-movil__link" href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <!-- ============================================================
+         BLOQUE 1 — HERO CORTO (~40vh)
+         Imagen de aceitunas/almazara con velo oscuro.
+         Sin botón: el usuario hace scroll y entra en las categorías.
+         ============================================================ -->
+    <section class="tienda-hero" aria-labelledby="tienda-hero-titulo">
+      <img class="tienda-hero__media"
+           src="assets/images/hero/tienda-hero.jpg"
+           alt=""
+           aria-hidden="true" />
+      <div class="tienda-hero__velo" aria-hidden="true"></div>
+
+      <div class="contenedor tienda-hero__contenido">
+        <span class="eyebrow tienda-hero__eyebrow">Venta directa en origen</span>
+        <h1 id="tienda-hero-titulo" class="tienda-hero__titulo">Compra aceite directamente en origen</h1>
+        <p class="tienda-hero__subtitulo">
+          Recibe en casa el aceite de oliva virgen extra de nuestra cooperativa.
+          Venta directa desde Montejícar, en el corazón de los Montes de Granada.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOQUE 2 — BANDA ÚNICO FRUTADO (producto destacado, al principio)
+         Bloque a ancho completo, oliva oscuro. Es el primer producto
+         que ve el visitante — escaparate de la edición limitada.
+         ============================================================ -->
+    <section class="banda-unico banda-unico--top al-aparecer" aria-labelledby="banda-unico-titulo">
+      <div class="contenedor banda-unico__grid">
+        <div class="banda-unico__imagen-wrapper">
+          <img class="banda-unico__imagen"
+            src="assets/images/products/unico-frutado-banda.jpg"
+            alt="Único Frutado, edición limitada de hojiblanca temprana"
+            loading="lazy" />
+        </div>
+        <div class="banda-unico__texto-wrapper">
+          <span class="banda-unico__sello">Edición limitada</span>
+          <h2 id="banda-unico-titulo" class="banda-unico__titulo">Único Frutado</h2>
+          <p class="banda-unico__texto">
+            Hojiblanca de recolección temprana, seleccionada de los mejores lotes del inicio de campaña.
+            Una edición limitada con el carácter más fresco y vigoroso del año.
+          </p>
+          <button class="boton boton--primario banda-unico__cta" type="button" data-abrir-producto="unico-frutado-500">
+            Ver detalle
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         BLOQUES 3-5 — TRES CATEGORÍAS DE ACEITES
+         Misma estructura: título + descripción breve + grid de tarjetas.
+         Los datos completos de cada producto viven en data-* sobre la
+         tarjeta y los recoge scripts/catalogo.js para alimentar el modal.
+         ============================================================ -->
+    <div class="tienda-categorias">
+      <div class="contenedor">
+
+        <!-- ── Categoría 3: Para regalar ────────────────────────── -->
+        <section class="categoria al-aparecer" aria-labelledby="cat-regalar">
+          <header class="categoria__cabecera">
+            <h2 id="cat-regalar" class="categoria__titulo">Edición limitada</h2>
+            <p class="categoria__descripcion">
+              Nuestras referencias más cuidadas, en formatos y presentaciones especiales.
+              Producción limitada de campaña, también perfectas para regalar.
+            </p>
+          </header>
+
+          <div class="categoria__grid categoria__grid--dos">
+
+            <!-- Único Frutado 500 ml -->
+            <article class="tarjeta-aceite al-aparecer-hijo"
+              data-producto
+              data-id="unico-frutado-500"
+              data-nombre="Único Frutado"
+              data-variedad="Hojiblanca temprana"
+              data-formato="500 ml"
+              data-precio="18.90"
+              data-imagen="assets/images/products/unico-frutado.jpg"
+              data-intensidad="75"
+              data-perfil="Frutado · Amargor medio · Cuerpo"
+              data-frutado="85"
+              data-amargor="60"
+              data-picor="70"
+              data-edicion-limitada="true"
+              data-descripcion="Hojiblanca de recolección temprana, seleccionada de los mejores lotes del inicio de campaña. Cuerpo, vigor y un frutado intenso que solo aparece en las primeras semanas de molienda. Edición limitada."
+              data-uso="Perfecto en crudo: pan tostado, jamón, solomillo a la plancha.">
+              <button class="tarjeta-aceite__abrir" type="button" aria-label="Ver detalle de Único Frutado 500 ml"></button>
+              <div class="tarjeta-aceite__imagen-wrapper">
+                <span class="chip chip--destacado tarjeta-aceite__sello">Edición limitada</span>
+                <img class="tarjeta-aceite__imagen"
+                  src="assets/images/products/unico-frutado.jpg"
+                  alt="Botella de Único Frutado Hojiblanca temprana 500 ml"
+                  loading="lazy" />
+              </div>
+              <div class="tarjeta-aceite__cuerpo">
+                <h3 class="tarjeta-aceite__nombre">Único Frutado</h3>
+                <p class="tarjeta-aceite__meta">Hojiblanca temprana · 500 ml</p>
+                <p class="tarjeta-aceite__precio">18,90&nbsp;€</p>
+                <button class="boton boton--primario tarjeta-aceite__cta" type="button" data-anyadir>
+                  Añadir al carrito
+                </button>
+              </div>
+            </article>
+
+            <!-- Único Frutado estuche regalo -->
+            <article class="tarjeta-aceite al-aparecer-hijo"
+              data-producto
+              data-id="unico-frutado-estuche"
+              data-nombre="Único Frutado · Estuche regalo"
+              data-variedad="Hojiblanca temprana"
+              data-formato="Estuche · 500 ml"
+              data-precio="24.50"
+              data-imagen="assets/images/products/unico-frutado-estuche.jpg"
+              data-intensidad="75"
+              data-perfil="Frutado · Amargor medio · Cuerpo"
+              data-frutado="85"
+              data-amargor="60"
+              data-picor="70"
+              data-edicion-limitada="true"
+              data-descripcion="La misma hojiblanca temprana de nuestro Único Frutado, presentada en estuche de regalo. Acabado cuidado para una ocasión especial: cumpleaños, agradecimientos, fechas señaladas."
+              data-uso="El regalo seguro para alguien al que le importa lo que come.">
+              <button class="tarjeta-aceite__abrir" type="button" aria-label="Ver detalle de Único Frutado estuche regalo"></button>
+              <div class="tarjeta-aceite__imagen-wrapper">
+                <span class="chip chip--destacado tarjeta-aceite__sello">Edición limitada</span>
+                <img class="tarjeta-aceite__imagen"
+                  src="assets/images/products/unico-frutado-estuche.jpg"
+                  alt="Estuche regalo de Único Frutado Hojiblanca temprana"
+                  loading="lazy" />
+              </div>
+              <div class="tarjeta-aceite__cuerpo">
+                <h3 class="tarjeta-aceite__nombre">Único Frutado · Estuche regalo</h3>
+                <p class="tarjeta-aceite__meta">Hojiblanca temprana · estuche 500 ml</p>
+                <p class="tarjeta-aceite__precio">24,50&nbsp;€</p>
+                <button class="boton boton--primario tarjeta-aceite__cta" type="button" data-anyadir>
+                  Añadir al carrito
+                </button>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- ── Categoría 2: Para disfrutar en crudo ─────────────── -->
+        <section class="categoria al-aparecer" aria-labelledby="cat-crudo">
+          <header class="categoria__cabecera">
+            <h2 id="cat-crudo" class="categoria__titulo">Selección</h2>
+            <p class="categoria__descripcion">
+              Monovarietales con carácter, para realzar platos en crudo.
+              Tostadas, ensaladas, carpaccios, gazpachos.
+            </p>
+          </header>
+
+          <div class="categoria__grid categoria__grid--dos">
+
+            <!-- DCOOP Selección Picual 500 ml -->
+            <article class="tarjeta-aceite al-aparecer-hijo"
+              data-producto
+              data-id="dcoop-seleccion-500"
+              data-nombre="DCOOP Selección Picual"
+              data-variedad="Picual"
+              data-formato="500 ml"
+              data-precio="11.90"
+              data-imagen="assets/images/products/dcoop-seleccion.jpg"
+              data-intensidad="80"
+              data-perfil="Robusto · Profundo · Picor alto"
+              data-frutado="75"
+              data-amargor="70"
+              data-picor="80"
+              data-descripcion="Selección de la mejor picual del grupo cooperativo DCOOP. Frutado verde marcado, amargor y picor altos perfectamente integrados. Un aceite para los que disfrutan del carácter."
+              data-uso="Perfecto para tostadas, ensaladas de tomate, gazpachos y carpaccios.">
+              <button class="tarjeta-aceite__abrir" type="button" aria-label="Ver detalle de DCOOP Selección Picual 500 ml"></button>
+              <div class="tarjeta-aceite__imagen-wrapper">
+                <img class="tarjeta-aceite__imagen"
+                  src="assets/images/products/dcoop-seleccion.jpg"
+                  alt="Botella de DCOOP Selección Picual 500 ml"
+                  loading="lazy" />
+              </div>
+              <div class="tarjeta-aceite__cuerpo">
+                <h3 class="tarjeta-aceite__nombre">DCOOP Selección Picual</h3>
+                <p class="tarjeta-aceite__meta">Picual · 500 ml</p>
+                <p class="tarjeta-aceite__precio">11,90&nbsp;€</p>
+                <button class="boton boton--primario tarjeta-aceite__cta" type="button" data-anyadir>
+                  Añadir al carrito
+                </button>
+              </div>
+            </article>
+
+            <!-- Olixicar Picual 500 ml -->
+            <article class="tarjeta-aceite al-aparecer-hijo"
+              data-producto
+              data-id="olixicar-500"
+              data-nombre="Olixicar Picual"
+              data-variedad="Picual"
+              data-formato="500 ml"
+              data-precio="6.90"
+              data-imagen="assets/images/products/olixicar-500ml.jpg"
+              data-intensidad="70"
+              data-perfil="Intenso · Picual · Vigoroso"
+              data-frutado="60"
+              data-amargor="55"
+              data-picor="60"
+              data-descripcion="Versión 500 ml del Olixicar, picual monovarietal vigoroso. Botella manejable para tener cerca de la encimera y darle uso a diario en crudo."
+              data-uso="Perfecto para tostadas, ensaladas y para terminar un buen guiso fuera del fuego.">
+              <button class="tarjeta-aceite__abrir" type="button" aria-label="Ver detalle de Olixicar Picual 500 ml"></button>
+              <div class="tarjeta-aceite__imagen-wrapper">
+                <img class="tarjeta-aceite__imagen"
+                  src="assets/images/products/olixicar-500ml.jpg"
+                  alt="Botella de Olixicar Picual 500 ml"
+                  loading="lazy" />
+              </div>
+              <div class="tarjeta-aceite__cuerpo">
+                <h3 class="tarjeta-aceite__nombre">Olixicar Picual</h3>
+                <p class="tarjeta-aceite__meta">Picual · 500 ml</p>
+                <p class="tarjeta-aceite__precio">6,90&nbsp;€</p>
+                <button class="boton boton--primario tarjeta-aceite__cta" type="button" data-anyadir>
+                  Añadir al carrito
+                </button>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- ── Categoría 1: Para el día a día ──────────────────── -->
+        <section class="categoria al-aparecer" aria-labelledby="cat-dia-a-dia">
+          <header class="categoria__cabecera">
+            <h2 id="cat-dia-a-dia" class="categoria__titulo">Uso diario</h2>
+            <p class="categoria__descripcion">
+              Aceites equilibrados y versátiles, pensados para la cocina diaria.
+              Ideales para guisos, fritos y aliños cotidianos.
+            </p>
+          </header>
+
+          <div class="categoria__grid">
+
+            <!-- AOVE Coupage 1 kg -->
+            <article class="tarjeta-aceite al-aparecer-hijo"
+              data-producto
+              data-id="coupage-1kg"
+              data-nombre="AOVE Coupage"
+              data-variedad="Coupage"
+              data-formato="1 kg"
+              data-precio="8.50"
+              data-imagen="assets/images/products/coupage-1kg.jpg"
+              data-intensidad="38"
+              data-perfil="Equilibrado · Frutado · Suave"
+              data-frutado="50"
+              data-amargor="40"
+              data-picor="35"
+              data-descripcion="Nuestro coupage cooperativa, hecho con las variedades del olivar de Montejícar. Un AOVE equilibrado, sin aristas, pensado para acompañar la cocina diaria sin imponerse."
+              data-uso="Perfecto para guisos, sofritos, fritos y aliños cotidianos.">
+              <button class="tarjeta-aceite__abrir" type="button" aria-label="Ver detalle de AOVE Coupage 1 kg"></button>
+              <div class="tarjeta-aceite__imagen-wrapper">
+                <img class="tarjeta-aceite__imagen"
+                  src="assets/images/products/coupage-1kg.jpg"
+                  alt="Botella de AOVE Coupage 1 kg"
+                  loading="lazy" />
+              </div>
+              <div class="tarjeta-aceite__cuerpo">
+                <h3 class="tarjeta-aceite__nombre">AOVE Coupage</h3>
+                <p class="tarjeta-aceite__meta">Coupage · 1 kg</p>
+                <p class="tarjeta-aceite__precio">8,50&nbsp;€</p>
+                <button class="boton boton--primario tarjeta-aceite__cta" type="button" data-anyadir>
+                  Añadir al carrito
+                </button>
+              </div>
+            </article>
+
+            <!-- AOVE Coupage 5 kg -->
+            <article class="tarjeta-aceite al-aparecer-hijo"
+              data-producto
+              data-id="coupage-5kg"
+              data-nombre="AOVE Coupage"
+              data-variedad="Coupage"
+              data-formato="5 kg"
+              data-precio="38.90"
+              data-imagen="assets/images/products/coupage-5kg.jpg"
+              data-intensidad="38"
+              data-perfil="Equilibrado · Frutado · Suave"
+              data-frutado="50"
+              data-amargor="40"
+              data-picor="35"
+              data-descripcion="Formato familiar de nuestro coupage. Misma calidad equilibrada que el de 1 kg en una garrafa pensada para el consumo intensivo en casa o en hostelería."
+              data-uso="Perfecto para guisos, sofritos, fritos y aliños cotidianos.">
+              <button class="tarjeta-aceite__abrir" type="button" aria-label="Ver detalle de AOVE Coupage 5 kg"></button>
+              <div class="tarjeta-aceite__imagen-wrapper">
+                <img class="tarjeta-aceite__imagen"
+                  src="assets/images/products/coupage-5kg.jpg"
+                  alt="Garrafa de AOVE Coupage 5 kg"
+                  loading="lazy" />
+              </div>
+              <div class="tarjeta-aceite__cuerpo">
+                <h3 class="tarjeta-aceite__nombre">AOVE Coupage</h3>
+                <p class="tarjeta-aceite__meta">Coupage · 5 kg</p>
+                <p class="tarjeta-aceite__precio">38,90&nbsp;€</p>
+                <button class="boton boton--primario tarjeta-aceite__cta" type="button" data-anyadir>
+                  Añadir al carrito
+                </button>
+              </div>
+            </article>
+
+            <!-- Olixicar Picual 5 kg -->
+            <article class="tarjeta-aceite al-aparecer-hijo"
+              data-producto
+              data-id="olixicar-5kg"
+              data-nombre="Olixicar Picual"
+              data-variedad="Picual"
+              data-formato="5 kg"
+              data-precio="32.50"
+              data-imagen="assets/images/products/olixicar-5kg.jpg"
+              data-intensidad="70"
+              data-perfil="Intenso · Picual · Vigoroso"
+              data-frutado="60"
+              data-amargor="55"
+              data-picor="60"
+              data-descripcion="Picual monovarietal en formato familiar. Carácter robusto del olivar andaluz para quien busca un aceite con personalidad para el día a día."
+              data-uso="Perfecto para guisos, sofritos y para dar un toque firme a platos cocinados.">
+              <button class="tarjeta-aceite__abrir" type="button" aria-label="Ver detalle de Olixicar Picual 5 kg"></button>
+              <div class="tarjeta-aceite__imagen-wrapper">
+                <img class="tarjeta-aceite__imagen"
+                  src="assets/images/products/olixicar-5kg.jpg"
+                  alt="Garrafa de Olixicar Picual 5 kg"
+                  loading="lazy" />
+              </div>
+              <div class="tarjeta-aceite__cuerpo">
+                <h3 class="tarjeta-aceite__nombre">Olixicar Picual</h3>
+                <p class="tarjeta-aceite__meta">Picual · 5 kg</p>
+                <p class="tarjeta-aceite__precio">32,50&nbsp;€</p>
+                <button class="boton boton--primario tarjeta-aceite__cta" type="button" data-anyadir>
+                  Añadir al carrito
+                </button>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ============================================================
+       MODAL DE PRODUCTO (oculto hasta que catalogo.js lo activa)
+       Se rellena dinámicamente leyendo los data-* de la tarjeta.
+       ============================================================ -->
+  <div class="modal-producto"
+       id="modal-producto"
+       role="dialog"
+       aria-modal="true"
+       aria-labelledby="modal-nombre"
+       aria-hidden="true">
+    <div class="modal-producto__velo" data-cerrar-modal></div>
+
+    <div class="modal-producto__caja" role="document">
+      <button class="modal-producto__cerrar" type="button" data-cerrar-modal aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <line x1="6" y1="6" x2="18" y2="18"/>
+          <line x1="18" y1="6" x2="6" y2="18"/>
+        </svg>
+      </button>
+
+      <div class="modal-producto__grid">
+
+        <!-- Columna izquierda: imagen principal -->
+        <div class="modal-producto__imagen-wrapper">
+          <span class="modal-producto__sello chip chip--destacado" data-modal-sello hidden>Edición limitada</span>
+          <img class="modal-producto__imagen" data-modal-imagen alt="" />
+        </div>
+
+        <!-- Columna derecha: info + compra + intensidad + descripción -->
+        <div class="modal-producto__info">
+          <h2 class="modal-producto__nombre" id="modal-nombre" data-modal-nombre></h2>
+          <p class="modal-producto__meta" data-modal-meta></p>
+          <p class="modal-producto__precio" data-modal-precio></p>
+
+          <div class="modal-producto__compra">
+            <div class="cantidad-control" aria-label="Cantidad">
+              <button type="button" class="cantidad-control__boton" data-cantidad-menos aria-label="Quitar uno">−</button>
+              <input type="number" class="cantidad-control__input" value="1" min="1" max="99" data-cantidad-input aria-label="Cantidad" />
+              <button type="button" class="cantidad-control__boton" data-cantidad-mas aria-label="Añadir uno">+</button>
+            </div>
+            <button class="boton boton--primario modal-producto__anyadir" type="button" data-modal-anyadir>
+              Añadir al carrito
+            </button>
+          </div>
+
+          <!-- Perfil sensorial: elemento diferenciador.
+               Tres atributos (frutado, amargor, picor) con barra fina y
+               descriptor textual (Suave / Medio / Intenso) a la derecha.
+               Unifica intensidad + ficha en un único bloque coherente. -->
+          <div class="intensidad" aria-labelledby="intensidad-titulo">
+            <h3 id="intensidad-titulo" class="intensidad__titulo">Perfil sensorial</h3>
+            <ul class="intensidad__lista">
+              <li class="intensidad__atributo">
+                <span class="intensidad__nombre">Frutado</span>
+                <span class="intensidad__pista" aria-hidden="true">
+                  <span class="intensidad__relleno" data-modal-frutado style="--w:0%"></span>
+                </span>
+                <span class="intensidad__nivel" data-modal-frutado-nivel>—</span>
+              </li>
+              <li class="intensidad__atributo">
+                <span class="intensidad__nombre">Amargor</span>
+                <span class="intensidad__pista" aria-hidden="true">
+                  <span class="intensidad__relleno" data-modal-amargor style="--w:0%"></span>
+                </span>
+                <span class="intensidad__nivel" data-modal-amargor-nivel>—</span>
+              </li>
+              <li class="intensidad__atributo">
+                <span class="intensidad__nombre">Picor</span>
+                <span class="intensidad__pista" aria-hidden="true">
+                  <span class="intensidad__relleno" data-modal-picor style="--w:0%"></span>
+                </span>
+                <span class="intensidad__nivel" data-modal-picor-nivel>—</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Descripción y recomendación de uso -->
+          <p class="modal-producto__descripcion" data-modal-descripcion></p>
+          <p class="modal-producto__uso" data-modal-uso></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast de confirmación al añadir al carrito -->
+  <div class="toast" id="toast-carrito" role="status" aria-live="polite">
+    <span data-toast-texto>Producto añadido</span>
+    <a href="carrito.html" class="toast__link">Ver carrito →</a>
+  </div>
+
+  <!-- ============================================================
+       FOOTER GLOBAL
+       ============================================================ -->
+  <footer class="pie" role="contentinfo">
+    <div class="contenedor">
+      <div class="pie__grid">
+        <div class="pie__columna">
+          <div class="pie__marca">
+            Virgen de la Cabeza
+            <span class="pie__marca-sub">SCA · Montejícar</span>
+          </div>
+          <p class="pie__texto">Cooperativa olivarera fundada en 1963. Aceite de montaña de la DOP Montes de Granada.</p>
+          <div class="pie__redes">
+            <a class="pie__red" href="#" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.4-3H13.5V8.7c0-.9.3-1.5 1.6-1.5h1.7V4.4A24 24 0 0 0 14.3 4c-2.5 0-4.2 1.5-4.2 4.3v2.2H7.5v3h2.6V21h3.4Z"/></svg>
+            </a>
+            <a class="pie__red" href="#" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="pie__columna">
+          <h3>Navegación</h3>
+          <ul class="pie__lista">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="la-cooperativa.html">La cooperativa</a></li>
+            <li><a href="tienda.html">Tienda</a></li>
+            <li><a href="productos-agricolas.html">Productos agrícolas</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+
+        <div class="pie__columna">
+          <h3>Contacto</h3>
+          <p class="pie__texto">
+            Camino de la Almazara, s/n<br />
+            18561 Montejícar, Granada
+          </p>
+          <ul class="pie__lista">
+            <li><a href="tel:+34958000000">[TELÉFONO PENDIENTE]</a></li>
+            <li><a href="mailto:info@scavirgendelacabeza.com">info@scavirgendelacabeza.com</a></li>
+          </ul>
+        </div>
+
+        <div class="pie__columna">
+          <h3>Legal</h3>
+          <ul class="pie__lista">
+            <li><a href="aviso-legal.html">Aviso legal</a></li>
+            <li><a href="privacidad.html">Política de privacidad</a></li>
+            <li><a href="cookies.html">Política de cookies</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pie__franja">
+        <div class="pie__sellos">
+          <img src="assets/images/certifications/dop-montes-granada.svg" alt="DOP Montes de Granada" />
+          <span class="pie__sellos-divisor" aria-hidden="true"></span>
+          <img src="assets/images/certifications/dcoop.svg" alt="DCOOP" />
+        </div>
+        <p class="pie__copyright">© <span id="anyo-actual">2026</span> SCA Virgen de la Cabeza · CIF F18005009</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botón flotante "subir arriba" -->
+  <button id="subir-arriba" class="subir-arriba" type="button" aria-label="Volver arriba">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="6 15 12 9 18 15" />
+    </svg>
+  </button>
+
+  <script>
+    document.getElementById('anyo-actual').textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Orden: carrito.js define window.Carrito, catalogo.js lo consume,
+       main.js conecta el contador del header. -->
+  <script src="scripts/carrito.js" defer></script>
+  <script src="scripts/catalogo.js" defer></script>
+  <script src="scripts/main.js" defer></script>
+</body>
+</html>
