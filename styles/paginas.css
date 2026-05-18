@@ -2330,3 +2330,239 @@
     top: 104px;
   }
 }
+
+
+/* ============================================================
+   Sección: Tienda (tienda.html)
+   Brief: 5 bloques verticales. Hero corto + 3 categorías + banda final.
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   1. Hero corto (~40vh).
+   No es la home: sólo un titular + subtítulo, sin botón.
+   ---------------------------------------------------------- */
+.tienda-hero {
+  position: relative;
+  height: 44vh;
+  min-height: 340px;
+  max-height: 520px;
+  overflow: hidden;
+  color: var(--color-crema);
+  background-color: var(--color-oliva-oscuro);
+}
+.tienda-hero__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+.tienda-hero__velo {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(26,23,27,0.55) 0%, rgba(26,23,27,0.35) 60%, rgba(26,23,27,0.55) 100%);
+  z-index: 2;
+}
+.tienda-hero__contenido {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  max-width: 720px;
+}
+.tienda-hero__eyebrow {
+  color: var(--color-dorado);
+  margin-bottom: 18px;
+}
+.tienda-hero__titulo {
+  font-family: var(--fuente-titular);
+  font-size: clamp(34px, 5.6vw, 58px);
+  font-weight: 500;
+  line-height: 1.05;
+  color: var(--color-crema);
+  margin: 0 0 18px;
+  text-wrap: balance;
+}
+.tienda-hero__subtitulo {
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.6;
+  color: rgba(245, 241, 232, 0.88);
+  max-width: 56ch;
+  margin: 0;
+}
+
+/* ----------------------------------------------------------
+   2-4. Bloques de categorías
+   ---------------------------------------------------------- */
+.tienda-categorias {
+  padding: 72px 0 40px;
+}
+
+.categoria {
+  margin-bottom: 80px;
+}
+.categoria:last-child { margin-bottom: 0; }
+
+.categoria__cabecera {
+  max-width: 720px;
+  margin: 0 0 36px;
+}
+.categoria__titulo {
+  font-family: var(--fuente-titular);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 500;
+  color: var(--color-oliva-oscuro);
+  margin: 0 0 10px;
+  /* Línea dorada sutil debajo del título */
+  position: relative;
+  padding-bottom: 16px;
+}
+.categoria__titulo::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 56px;
+  height: 2px;
+  background-color: var(--color-dorado);
+}
+.categoria__descripcion {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-tierra);
+  margin: 0;
+  max-width: 60ch;
+}
+
+.categoria__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+
+/* ----------------------------------------------------------
+   5. Banda final con Único Frutado
+   Fondo oliva oscuro, imagen vertical a la izquierda, texto + CTA derecha.
+   ---------------------------------------------------------- */
+.banda-unico {
+  background-color: var(--color-oliva-oscuro);
+  color: var(--color-crema);
+  margin-top: 40px;
+  padding: 72px 0;
+  /* Textura sutil: degradado radial dorado en una esquina */
+  background-image:
+    radial-gradient(circle at 85% 30%, rgba(201, 169, 97, 0.10), transparent 55%),
+    linear-gradient(180deg, var(--color-oliva-oscuro), #2c3a20);
+}
+.banda-unico__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: center;
+}
+.banda-unico__imagen-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.18);
+  border-radius: 4px;
+  padding: 24px;
+  max-height: 520px;
+  overflow: hidden;
+}
+.banda-unico__imagen {
+  max-height: 460px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.35));
+}
+.banda-unico__texto-wrapper {
+  max-width: 480px;
+}
+.banda-unico__sello {
+  display: inline-block;
+  font-family: var(--fuente-cuerpo);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--color-dorado);
+  border: 1px solid var(--color-dorado);
+  padding: 6px 12px;
+  border-radius: 999px;
+  margin-bottom: 20px;
+}
+.banda-unico__titulo {
+  font-family: var(--fuente-titular);
+  font-size: clamp(36px, 5vw, 54px);
+  font-weight: 500;
+  color: var(--color-crema);
+  margin: 0 0 18px;
+  line-height: 1.05;
+}
+.banda-unico__texto {
+  font-size: 16px;
+  line-height: 1.7;
+  color: rgba(245, 241, 232, 0.85);
+  margin: 0 0 28px;
+}
+.banda-unico__cta {
+  padding: 14px 32px;
+}
+
+/* Quitamos el margen del footer porque la banda-unico va pegada al pie */
+.banda-unico + .pie,
+.banda-unico ~ .pie {
+  margin-top: 0;
+}
+
+/* ----------------------------------------------------------
+   Breakpoints — tienda
+   ---------------------------------------------------------- */
+@media (min-width: 640px) {
+  .categoria__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .categoria__grid--dos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .tienda-categorias {
+    padding: 96px 0 64px;
+  }
+  .categoria { margin-bottom: 112px; }
+  .categoria__cabecera { margin-bottom: 44px; }
+
+  /* Categoría 1 (día a día) tiene 3 productos → 3 columnas */
+  .categoria__grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  /* Categorías con 2 productos: mantenemos 2 columnas más anchas */
+  .categoria__grid--dos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 880px;
+  }
+
+  .banda-unico {
+    padding: 96px 0;
+  }
+  .banda-unico__grid {
+    grid-template-columns: 5fr 6fr;
+    gap: 64px;
+  }
+  .banda-unico__imagen {
+    max-height: 540px;
+  }
+}
