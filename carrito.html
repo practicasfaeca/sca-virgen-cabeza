@@ -131,10 +131,14 @@
          ============================================================ -->
     <section id="vista-vacio" class="vista carrito-vacio" aria-label="Carrito vacío">
       <div class="contenedor">
-        <img class="carrito-vacio__icono"
-             src="assets/images/icons/carrito-vacio.svg"
-             alt=""
-             aria-hidden="true" />
+        <div class="carrito-vacio__icono" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M3 4h2l2.4 12.2a2 2 0 0 0 2 1.8h7.6a2 2 0 0 0 2-1.6L21 8H6" />
+            <circle cx="9" cy="20" r="1.5" />
+            <circle cx="17" cy="20" r="1.5" />
+          </svg>
+        </div>
         <h2 class="carrito-vacio__titulo">Tu carrito está vacío</h2>
         <p class="carrito-vacio__texto">Cuando añadas aceites desde la tienda, aparecerán aquí.</p>
         <a href="tienda.html" class="boton boton--primario">Ir a la tienda</a>
