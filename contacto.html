@@ -41,6 +41,38 @@
       </nav>
 
       <div class="encabezado__acciones">
+        <div class="encabezado__acceso">
+          <button id="abrir-acceso" class="encabezado__acceso-boton" type="button"
+                  aria-controls="acceso-panel" aria-expanded="false" aria-label="Acceso socios">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="8" r="4"/>
+              <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+            </svg>
+          </button>
+
+          <div id="acceso-panel" class="acceso-panel" role="dialog" aria-modal="false" aria-labelledby="acceso-titulo" aria-hidden="true">
+            <h2 id="acceso-titulo" class="acceso-panel__titulo">Acceso socios</h2>
+            <p class="acceso-panel__subtitulo">Entra en tu área privada</p>
+
+            <form class="acceso-form" novalidate>
+              <div class="acceso-form__campo">
+                <label class="acceso-form__etiqueta" for="acceso-usuario">Nº de socio o email</label>
+                <input class="acceso-form__input" type="text" id="acceso-usuario" name="usuario"
+                       autocomplete="username" placeholder="123456 · tu@correo.es" />
+              </div>
+              <div class="acceso-form__campo">
+                <label class="acceso-form__etiqueta" for="acceso-clave">Contraseña</label>
+                <input class="acceso-form__input" type="password" id="acceso-clave" name="contrasena"
+                       autocomplete="current-password" placeholder="••••••••" />
+              </div>
+              <button class="boton boton--primario acceso-form__boton" type="submit">Iniciar sesión</button>
+              <a class="acceso-form__olvido" href="#">¿Has olvidado tu contraseña?</a>
+            </form>
+
+            <p class="acceso-panel__pie"><strong>Virgen de la Cabeza</strong> · Socios</p>
+          </div>
+        </div>
+
         <a href="carrito.html" class="encabezado__carrito" aria-label="Ver carrito">
           <svg class="encabezado__carrito-icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M3 4h2l2.4 12.2a2 2 0 0 0 2 1.8h7.6a2 2 0 0 0 2-1.6L21 8H6" />
@@ -287,6 +319,7 @@
   <footer class="pie" role="contentinfo">
     <div class="contenedor">
       <div class="pie__grid">
+        <!-- Columna 1: marca + redes -->
         <div class="pie__columna">
           <div class="pie__marca">
             Virgen de la Cabeza
@@ -307,17 +340,19 @@
           </div>
         </div>
 
+        <!-- Columna 2: navegación -->
         <div class="pie__columna">
           <h3>Navegación</h3>
           <ul class="pie__lista">
             <li><a href="index.html">Inicio</a></li>
             <li><a href="la-cooperativa.html">La cooperativa</a></li>
-            <li><a href="tienda.html">Aceites</a></li>
+            <li><a href="tienda.html">Tienda</a></li>
             <li><a href="productos-agricolas.html">Productos agrícolas</a></li>
             <li><a href="contacto.html">Contacto</a></li>
           </ul>
         </div>
 
+        <!-- Columna 3: contacto -->
         <div class="pie__columna">
           <h3>Contacto</h3>
           <p class="pie__texto">
@@ -330,12 +365,11 @@
           </ul>
         </div>
 
+        <!-- Columna 4: legales -->
         <div class="pie__columna">
           <h3>Legal</h3>
           <ul class="pie__lista">
-            <li><a href="aviso-legal.html">Aviso legal</a></li>
-            <li><a href="privacidad.html">Política de privacidad</a></li>
-            <li><a href="cookies.html">Política de cookies</a></li>
+            <li><a href="aviso-legal.html">Aviso legal y privacidad</a></li>
           </ul>
         </div>
       </div>
