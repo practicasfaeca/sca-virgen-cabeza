@@ -248,13 +248,16 @@
 .pie__sellos {
   display: flex;
   align-items: center;
-  gap: 24px;
-  color: rgba(245, 241, 232, 0.7);
+  gap: 32px;
+  color: rgba(245, 241, 232, 0.78);
 }
-.pie__sellos svg { height: 36px; width: auto; }
+/* Los sellos son <img src="*.svg"> en producción y SVG inline en algunos casos.
+   Cubrimos ambos selectores para que tengan exactamente el mismo tamaño. */
+.pie__sellos svg,
+.pie__sellos img { height: 56px; width: auto; display: block; }
 .pie__sellos-divisor {
   width: 1px;
-  height: 28px;
+  height: 44px;
   background-color: rgba(245, 241, 232, 0.2);
 }
 .pie__copyright {
@@ -941,4 +944,158 @@
   .encabezado__hamburguesa { display: none; }
   .menu-movil { display: none; }
   .subir-arriba { right: 32px; bottom: 32px; width: 52px; height: 52px; }
+}
+
+
+/* ============================================================
+   Acceso socios — botón en el header + panel desplegable
+   Demo puramente estética: el form no envía a ningún sitio.
+   ============================================================ */
+.encabezado__acceso { position: relative; }
+
+.encabezado__acceso-boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-crema);
+  border-radius: 50%;
+  transition: background-color var(--transicion-rapida), color var(--transicion-rapida);
+}
+.encabezado__acceso-boton:hover,
+.encabezado__acceso-boton[aria-expanded="true"] {
+  background-color: rgba(245, 241, 232, 0.10);
+  color: var(--color-crema);
+}
+.encabezado__acceso-boton[aria-expanded="true"] {
+  color: var(--color-dorado);
+}
+.encabezado__acceso-boton svg { width: 22px; height: 22px; display: block; }
+
+/* Panel desplegable */
+.acceso-panel {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  width: 340px;
+  max-width: calc(100vw - 32px);
+  background-color: var(--color-blanco);
+  color: var(--color-carbon);
+  border-radius: 6px;
+  box-shadow: 0 20px 50px rgba(26, 23, 27, 0.22);
+  padding: 26px 26px 22px;
+  z-index: 60;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+.acceso-panel[aria-hidden="false"] {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+/* Pico/flecha que ancla visualmente el panel al botón */
+.acceso-panel::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  right: 14px;
+  width: 14px;
+  height: 14px;
+  background-color: var(--color-blanco);
+  transform: rotate(45deg);
+  border-top-left-radius: 2px;
+}
+
+.acceso-panel__titulo {
+  font-family: var(--fuente-titular);
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--color-oliva-oscuro);
+  margin: 0;
+  line-height: 1.15;
+}
+.acceso-panel__subtitulo {
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  color: var(--color-tierra);
+  margin: 4px 0 20px;
+}
+
+/* Formulario */
+.acceso-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.acceso-form__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.acceso-form__etiqueta {
+  font-family: var(--fuente-cuerpo);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--color-dorado);
+}
+.acceso-form__input {
+  font-family: var(--fuente-cuerpo);
+  font-size: 14px;
+  padding: 11px 14px;
+  background-color: var(--color-crema);
+  border: 1.5px solid transparent;
+  border-radius: 4px;
+  color: var(--color-carbon);
+  width: 100%;
+  transition: border-color var(--transicion-rapida),
+              background-color var(--transicion-rapida);
+}
+.acceso-form__input::placeholder {
+  color: rgba(139, 115, 85, 0.55);
+}
+.acceso-form__input:focus {
+  outline: 0;
+  background-color: var(--color-blanco);
+  border-color: var(--color-dorado);
+}
+.acceso-form__boton {
+  margin-top: 4px;
+  width: 100%;
+  padding: 13px 16px;
+}
+.acceso-form__olvido {
+  font-size: 12px;
+  text-align: right;
+  color: var(--color-tierra);
+  text-decoration: none;
+  margin-top: 2px;
+  transition: color var(--transicion-rapida);
+}
+.acceso-form__olvido:hover { color: var(--color-dorado); }
+
+/* Marca cooperativa al pie del panel — un detalle sutil */
+.acceso-panel__pie {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-gris-suave);
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--color-tierra);
+  text-align: center;
+}
+.acceso-panel__pie strong { color: var(--color-oliva-oscuro); font-weight: 600; letter-spacing: 1.2px; }
+
+/* En móvil ocupamos casi todo el ancho con un pequeño margen */
+@media (max-width: 480px) {
+  .acceso-panel {
+    right: -8px;
+    width: calc(100vw - 24px);
+  }
+  .acceso-panel::before { right: 22px; }
 }
