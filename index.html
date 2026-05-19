@@ -92,6 +92,7 @@
       </div>
     </div>
 
+    <!-- Panel móvil (sólo se ve cuando aria-hidden="false") -->
     <div id="menu-movil" class="menu-movil" aria-hidden="true">
       <nav aria-label="Navegación móvil">
         <ul class="menu-movil__lista">
@@ -121,7 +122,7 @@
         playsinline
         preload="metadata"
         poster="assets/images/hero/hero-fallback.jpg"
-        src="assets/videos/Olivos.mp4"
+        data-src="assets/videos/Olivos.mp4"
         aria-hidden="true">
       </video>
       <div class="hero__overlay" aria-hidden="true"></div>
@@ -132,7 +133,7 @@
         <a href="tienda.html" class="boton boton--primario hero__cta">Ver nuestros aceites</a>
       </div>
 
-      <span class="hero__scroll-hint" aria-hidden="true">Desliza</span>
+      
     </section>
 
     <!-- ============================================================
@@ -172,32 +173,32 @@
           <h2 id="selector-titulo" class="titulo-bloque">Encuentra el tuyo según el uso</h2>
         </div>
         <div class="selector-uso__grid">
-          <a href="producto.html?id=aove-coupage" class="tarjeta-uso">
+          <a href="tienda.html#cat-dia-a-dia" class="tarjeta-uso">
             <div class="tarjeta-uso__icono">
               <img src="assets/images/products/cocinar-a-diario.png" alt=""
               aria-hidden="true" />
             </div>
-            <h3 class="tarjeta-uso__titulo">Para cocinar a diario</h3>
-            <p class="tarjeta-uso__descripcion">Un coupage equilibrado que va bien con todo: guisos, sofritos y fritos.</p>
-            <span class="tarjeta-uso__enlace">Ver este aceite <span class="tarjeta-uso__flecha">→</span></span>
+            <h3 class="tarjeta-uso__titulo">Para el uso diario</h3>
+            <p class="tarjeta-uso__descripcion">Aceites equilibrados y versátiles para guisos, sofritos y aliños cotidianos.</p>
+            <span class="tarjeta-uso__enlace">Ver tienda <span class="tarjeta-uso__flecha">→</span></span>
           </a>
-          <a href="producto.html?id=dcoop-seleccion-picual" class="tarjeta-uso">
+          <a href="tienda.html#cat-crudo" class="tarjeta-uso">
             <div class="tarjeta-uso__icono">
               <img src="assets/images/products/crudo-y-alinar.png" alt=""
               aria-hidden="true" />
             </div>
-            <h3 class="tarjeta-uso__titulo">Para crudo y aliñar</h3>
-            <p class="tarjeta-uso__descripcion">Picual monovarietal intenso para ensaladas, tostadas y un buen pan.</p>
-            <span class="tarjeta-uso__enlace">Ver este aceite <span class="tarjeta-uso__flecha">→</span></span>
+            <h3 class="tarjeta-uso__titulo">Para disfrutar en crudo</h3>
+            <p class="tarjeta-uso__descripcion">Monovarietales con carácter para ensaladas, tostadas, carpaccios y gazpachos.</p>
+            <span class="tarjeta-uso__enlace">Ver tienda <span class="tarjeta-uso__flecha">→</span></span>
           </a>
-          <a href="producto.html?id=unico-frutado" class="tarjeta-uso">
+          <a href="tienda.html#cat-regalar" class="tarjeta-uso">
             <div class="tarjeta-uso__icono">
               <img src="assets/images/products/regalar-y-disfrutar.png" alt=""
               aria-hidden="true" />
             </div>
-            <h3 class="tarjeta-uso__titulo">Para regalar y disfrutar</h3>
-            <p class="tarjeta-uso__descripcion">Una hojiblanca de recolección temprana de producción limitada.</p>
-            <span class="tarjeta-uso__enlace">Ver este aceite <span class="tarjeta-uso__flecha">→</span></span>
+            <h3 class="tarjeta-uso__titulo">Edición limitada</h3>
+            <p class="tarjeta-uso__descripcion">Hojiblanca de recolección temprana. Producción limitada de campaña.</p>
+            <span class="tarjeta-uso__enlace">Ver tienda <span class="tarjeta-uso__flecha">→</span></span>
           </a>
         </div>
       </div>
@@ -266,19 +267,19 @@
 
         <div class="virtudes__grid">
           <article class="virtud al-aparecer-hijo">
-            <img class="virtud__icono" src="assets/images/icons/montana.png" alt="" aria-hidden="true" />
+            <img class="virtud__icono" src="assets/images/icons/montana.svg" alt="" aria-hidden="true" />
             <h3 class="virtud__titulo">Aceite de montaña</h3>
             <p class="virtud__descripcion">Nuestro olivar crece a más de 900 metros. La maduración lenta da aceites con cuerpo, alto en ácido oleico y baja acidez.</p>
           </article>
 
           <article class="virtud al-aparecer-hijo">
-            <img class="virtud__icono" src="assets/images/icons/cooperativa.png" alt="" aria-hidden="true" />
+            <img class="virtud__icono" src="assets/images/icons/cooperativa.svg" alt="" aria-hidden="true" />
             <h3 class="virtud__titulo">Cooperativa familiar</h3>
             <p class="virtud__descripcion">Cientos de familias olivareras llevan décadas trayendo aquí su cosecha. Cada gota tiene un nombre detrás.</p>
           </article>
 
           <article class="virtud al-aparecer-hijo">
-            <img class="virtud__icono" src="assets/images/icons/medioambiente.png" alt="" aria-hidden="true" />
+            <img class="virtud__icono" src="assets/images/icons/medioambiente.svg" alt="" aria-hidden="true" />
             <h3 class="virtud__titulo">Compromiso con el medio ambiente</h3>
             <p class="virtud__descripcion">Hemos modernizado la almazara con ayudas públicas y autoconsumo fotovoltaico para reducir nuestra huella energética.</p>
           </article>
@@ -302,14 +303,14 @@
         <div class="destacado__texto-wrapper">
           <span class="destacado__sello">Edición limitada</span>
           <h2 id="destacado-titulo" class="destacado__titulo">Único Frutado</h2>
-          <p class="destacado__subtitulo">Hojiblanca de recolección temprana</p>
+          <p class="destacado__subtitulo">Nuestro AOVE más exclusivo</p>
           <p class="destacado__texto">
-            Una selección de los mejores lotes del inicio de campaña. Hojiblanca recogida temprano, con cuerpo, vigor y un frutado intenso que solo aparece en las primeras semanas de molienda.
+            Un aceite reservado para los paladares más exigentes, con una producción muy reducida —muy por debajo de la del resto de nuestros aceites— elaborado a partir de una cuidada selección de los mejores lotes de campaña.
           </p>
           <p class="destacado__texto">
-            Producción limitada. Cuando se agota la campaña, ya no hay más hasta la siguiente.
+            Una edición exclusiva y limitada. Cuando se agotan las botellas, ya no hay más hasta la siguiente cosecha.
           </p>
-          <a href="producto.html?id=unico-frutado" class="boton boton--primario destacado__cta">Comprar Único Frutado</a>
+          <a href="tienda.html#cat-regalar" class="boton boton--primario destacado__cta">Comprar Único Frutado</a>
         </div>
       </div>
     </section>
@@ -377,7 +378,7 @@
             18561 Montejícar, Granada
           </p>
           <ul class="pie__lista">
-            <li><a href="tel:+34958000000">[TELÉFONO PENDIENTE]</a></li>
+            <li><a href="tel:+34958393394">958 393 394</a></li>
             <li><a href="mailto:info@scavirgendelacabeza.com">info@scavirgendelacabeza.com</a></li>
           </ul>
         </div>
@@ -391,13 +392,17 @@
         </div>
       </div>
 
-      <div class="pie__franja">
+    </div>
+
+    <!-- Franja inferior a ancho completo -->
+    <div class="pie__franja">
+      <div class="pie__franja-inner">
         <div class="pie__sellos">
-          <img src="assets/images/certifications/dop-montes-granada.svg" alt="DOP Montes de Granada" />
-          <span class="pie__sellos-divisor" aria-hidden="true"></span>
-          <img src="assets/images/certifications/dcoop.svg" alt="DCOOP" />
+          <img src="assets/images/certifications/montes-de-granada.png" alt="DOP Montes de Granada" />
+          <img src="assets/images/certifications/dcoop.png" alt="DCOOP" />
         </div>
-        <p class="pie__copyright">© <span id="anyo-actual">2026</span> SCA Virgen de la Cabeza · CIF F18005009</p>
+        <span class="pie__franja-sep" aria-hidden="true"></span>
+        <p class="pie__copyright">© <span id="anyo-actual">2026</span> SCA Virgen de la Cabeza</p>
       </div>
     </div>
   </footer>
