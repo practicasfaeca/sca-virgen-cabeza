@@ -962,8 +962,7 @@
 
 /* Flechas — visibles solo en desktop (entre columnas) */
 .diagrama__paso::after {
-  content: "";
-  display: none;
+  display: none !important;
 }
 
 .contraetiqueta {
