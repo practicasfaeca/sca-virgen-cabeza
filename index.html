@@ -92,6 +92,7 @@
       </div>
     </div>
 
+    <!-- Panel móvil (sólo se ve cuando aria-hidden="false") -->
     <div id="menu-movil" class="menu-movil" aria-hidden="true">
       <nav aria-label="Navegación móvil">
         <ul class="menu-movil__lista">
@@ -121,7 +122,7 @@
         playsinline
         preload="metadata"
         poster="assets/images/hero/hero-fallback.jpg"
-        src="assets/videos/Olivos.mp4"
+        data-src="assets/videos/Olivos.mp4"
         aria-hidden="true">
       </video>
       <div class="hero__overlay" aria-hidden="true"></div>
@@ -132,7 +133,7 @@
         <a href="tienda.html" class="boton boton--primario hero__cta">Ver nuestros aceites</a>
       </div>
 
-      <span class="hero__scroll-hint" aria-hidden="true">Desliza</span>
+      <span class="hero__scroll-hint" aria-hidden="true" hidden></span>
     </section>
 
     <!-- ============================================================
@@ -164,6 +165,8 @@
 
     <!-- ============================================================
          3. SELECTOR DE USO
+         Tres puertas de entrada a la tienda, alineadas con las categorías
+         actuales de tienda.html (Uso diario · Selección · Edición limitada).
          ============================================================ -->
     <section class="selector-uso al-aparecer" aria-labelledby="selector-titulo">
       <div class="contenedor">
@@ -172,32 +175,32 @@
           <h2 id="selector-titulo" class="titulo-bloque">Encuentra el tuyo según el uso</h2>
         </div>
         <div class="selector-uso__grid">
-          <a href="producto.html?id=aove-coupage" class="tarjeta-uso">
+          <a href="tienda.html#cat-dia-a-dia" class="tarjeta-uso">
             <div class="tarjeta-uso__icono">
               <img src="assets/images/products/cocinar-a-diario.png" alt=""
               aria-hidden="true" />
             </div>
-            <h3 class="tarjeta-uso__titulo">Para cocinar a diario</h3>
-            <p class="tarjeta-uso__descripcion">Un coupage equilibrado que va bien con todo: guisos, sofritos y fritos.</p>
-            <span class="tarjeta-uso__enlace">Ver este aceite <span class="tarjeta-uso__flecha">→</span></span>
+            <h3 class="tarjeta-uso__titulo">Para el uso diario</h3>
+            <p class="tarjeta-uso__descripcion">Aceites equilibrados y versátiles para guisos, sofritos y aliños cotidianos.</p>
+            <span class="tarjeta-uso__enlace">Ver tienda <span class="tarjeta-uso__flecha">→</span></span>
           </a>
-          <a href="producto.html?id=dcoop-seleccion-picual" class="tarjeta-uso">
+          <a href="tienda.html#cat-crudo" class="tarjeta-uso">
             <div class="tarjeta-uso__icono">
               <img src="assets/images/products/crudo-y-alinar.png" alt=""
               aria-hidden="true" />
             </div>
-            <h3 class="tarjeta-uso__titulo">Para crudo y aliñar</h3>
-            <p class="tarjeta-uso__descripcion">Picual monovarietal intenso para ensaladas, tostadas y un buen pan.</p>
-            <span class="tarjeta-uso__enlace">Ver este aceite <span class="tarjeta-uso__flecha">→</span></span>
+            <h3 class="tarjeta-uso__titulo">Para disfrutar en crudo</h3>
+            <p class="tarjeta-uso__descripcion">Monovarietales con carácter para ensaladas, tostadas, carpaccios y gazpachos.</p>
+            <span class="tarjeta-uso__enlace">Ver tienda <span class="tarjeta-uso__flecha">→</span></span>
           </a>
-          <a href="producto.html?id=unico-frutado" class="tarjeta-uso">
+          <a href="tienda.html#cat-regalar" class="tarjeta-uso">
             <div class="tarjeta-uso__icono">
               <img src="assets/images/products/regalar-y-disfrutar.png" alt=""
               aria-hidden="true" />
             </div>
-            <h3 class="tarjeta-uso__titulo">Para regalar y disfrutar</h3>
-            <p class="tarjeta-uso__descripcion">Una hojiblanca de recolección temprana de producción limitada.</p>
-            <span class="tarjeta-uso__enlace">Ver este aceite <span class="tarjeta-uso__flecha">→</span></span>
+            <h3 class="tarjeta-uso__titulo">Edición limitada</h3>
+            <p class="tarjeta-uso__descripcion">Hojiblanca de recolección temprana. Producción limitada de campaña.</p>
+            <span class="tarjeta-uso__enlace">Ver tienda <span class="tarjeta-uso__flecha">→</span></span>
           </a>
         </div>
       </div>
@@ -309,7 +312,7 @@
           <p class="destacado__texto">
             Producción limitada. Cuando se agota la campaña, ya no hay más hasta la siguiente.
           </p>
-          <a href="producto.html?id=unico-frutado" class="boton boton--primario destacado__cta">Comprar Único Frutado</a>
+          <a href="tienda.html#cat-regalar" class="boton boton--primario destacado__cta">Comprar Único Frutado</a>
         </div>
       </div>
     </section>
