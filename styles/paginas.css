@@ -178,23 +178,31 @@
   text-decoration: none;
   color: inherit;
   transition: transform var(--transicion-rapida),
-    box-shadow var(--transicion-rapida),
-    border-color var(--transicion-rapida);
+              box-shadow var(--transicion-rapida),
+              border-color var(--transicion-rapida);
 }
-
 .tarjeta-uso:hover {
   transform: translateY(-4px);
   box-shadow: var(--sombra-media);
   border-color: var(--color-dorado);
   color: inherit;
 }
-
 .tarjeta-uso__icono {
-  width: 60px;
-  height: 60px;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 4px;
   color: var(--color-dorado);
 }
-
+.tarjeta-uso__icono img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .tarjeta-uso__titulo {
   font-family: var(--fuente-titular);
   font-weight: 500;
@@ -202,7 +210,6 @@
   margin: 0;
   color: var(--color-oliva-oscuro);
 }
-
 .tarjeta-uso__descripcion {
   font-size: 15px;
   line-height: 1.6;
@@ -210,7 +217,6 @@
   margin: 0;
   flex-grow: 1;
 }
-
 .tarjeta-uso__enlace {
   margin-top: 8px;
   font-size: 14px;
@@ -221,15 +227,11 @@
   align-items: center;
   gap: 8px;
 }
-
 .tarjeta-uso__flecha {
   display: inline-block;
   transition: transform var(--transicion-rapida);
 }
-
-.tarjeta-uso:hover .tarjeta-uso__flecha {
-  transform: translateX(6px);
-}
+.tarjeta-uso:hover .tarjeta-uso__flecha { transform: translateX(6px); }
 
 /* ----------------------------------------------------------
    4. Cronología de hitos
@@ -1079,6 +1081,32 @@
     padding: 36px 20px;
     position: relative;
   }
+
+.diagrama__paso {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+.diagrama__icono {
+  width: 56px; height: 56px;
+  color: var(--color-dorado);
+  margin-bottom: 14px;
+}
+.diagrama__titulo {
+  font-family: var(--fuente-titular);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-oliva-oscuro);
+  margin: 0 0 4px;
+}
+.diagrama__descripcion {
+  font-size: 13px;
+  color: var(--color-tierra);
+  margin: 0;
+  line-height: 1.4;
+}
 
   /* Flecha entre pasos (no en el último) */
   .diagrama__paso:not(:last-child)::after {
