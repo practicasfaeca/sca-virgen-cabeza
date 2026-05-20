@@ -236,47 +236,60 @@
 }
 .pie__red:hover { background-color: var(--color-dorado); border-color: var(--color-dorado); color: var(--color-carbon); }
 
-/* Franja inferior con sellos */
+/* Franja inferior: bloque crema EDGE-TO-EDGE con sellos + copyright y un
+   separador elegante en el medio (línea dorada con punto centrado). */
 .pie__franja {
-  border-top: 1px solid rgba(245, 241, 232, 0.15);
-  padding: 24px 0;
+  background-color: var(--color-crema);
+  padding: 22px 0;
+  margin-top: 0;
+}
+.pie__franja-inner {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 18px;
+  text-align: center;
 }
 .pie__sellos {
   display: flex;
   align-items: center;
-  gap: 32px;
-  color: rgba(245, 241, 232, 0.78);
+  gap: 40px;
 }
-/* Los sellos son <img src="*.svg"> en producción y SVG inline en algunos casos.
-   Cubrimos ambos selectores para que tengan exactamente el mismo tamaño. */
-.pie__sellos svg,
-.pie__sellos img { height: 56px; width: auto; display: block; }
-.pie__sellos-divisor {
-  width: 1px;
-  height: 44px;
-  background-color: rgba(245, 241, 232, 0.2);
+.pie__sellos img {
+  height: 72px;
+  width: auto;
+  display: block;
+}
+.pie__franja-sep {
+  display: none;
 }
 .pie__copyright {
-  font-size: 12px;
-  color: rgba(245, 241, 232, 0.55);
+  font-size: 12.5px;
+  color: rgba(58, 74, 42, 0.7);
   letter-spacing: .3px;
-  text-align: center;
+  margin: 0;
 }
 
 /* ----------------------------------------------------------
-   Botón flotante "subir arriba"
+   Botón flotante "subir arriba" — material CASI completamente transparente:
+   el contenido detrás del botón debe leerse siempre. La flecha es lo único
+   que tiene presencia visual, y usa un doble drop-shadow (claro + oscuro)
+   para que destaque tanto sobre fondos oscuros como claros.
    ---------------------------------------------------------- */
 .subir-arriba {
   position: fixed;
-  right: 20px;
-  bottom: 20px;
-  width: 46px; height: 46px;
-  background-color: var(--color-oliva-oscuro);
-  color: var(--color-crema);
+  right: 22px;
+  bottom: 22px;
+  width: 50px; height: 50px;
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: transparent;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -284,17 +297,45 @@
   opacity: 0;
   visibility: hidden;
   transform: translateY(10px);
-  transition: opacity var(--transicion-media), transform var(--transicion-media), background-color var(--transicion-rapida);
+  transition:
+    opacity var(--transicion-media),
+    transform var(--transicion-media),
+    background-color var(--transicion-rapida),
+    border-color var(--transicion-rapida);
   z-index: 40;
-  box-shadow: var(--sombra-media);
+  box-shadow: none;
+  isolation: isolate;
 }
+/* Sin highlight especular ni halo: queremos transparencia total. */
+.subir-arriba::before,
+.subir-arriba::after { content: none; }
+
 .subir-arriba.es-visible {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
-.subir-arriba:hover { background-color: var(--color-dorado); color: var(--color-carbon); }
-.subir-arriba svg { width: 18px; height: 18px; }
+/* La flecha: trazo blanco grueso con doble sombra (oscura + clara) para
+   leerse sobre cualquier fondo. */
+.subir-arriba svg {
+  width: 22px;
+  height: 22px;
+  stroke: #FFFFFF;
+  stroke-width: 2.6;
+  filter:
+    drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 4px rgba(0, 0, 0, 0.35));
+}
+.subir-arriba:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+.subir-arriba:hover svg {
+  filter:
+    drop-shadow(0 1px 2px rgba(0, 0, 0, 0.6))
+    drop-shadow(0 0 6px rgba(255, 255, 255, 0.55));
+}
+.subir-arriba svg { /* tamaño definido en la regla principal */ }
 
 /* ============================================================
    TARJETA-ACEITE — Tarjeta de la tienda (brief tienda.md)
@@ -906,8 +947,37 @@
    ---------------------------------------------------------- */
 @media (min-width: 768px) {
   .pie__grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; }
-  .pie__franja { flex-direction: row; justify-content: space-between; padding: 28px 0; }
-  .pie__copyright { text-align: right; }
+  .pie__franja-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    gap: 0;
+  }
+  .pie__franja-sep {
+    display: block;
+    flex: 1;
+    height: 1px;
+    margin: 0 36px;
+    position: relative;
+    background: linear-gradient(90deg,
+      transparent,
+      rgba(201, 169, 97, .35) 25%,
+      rgba(201, 169, 97, .75) 50%,
+      rgba(201, 169, 97, .35) 75%,
+      transparent);
+  }
+  .pie__franja-sep::after {
+    content: "";
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 7px;
+    height: 7px;
+    background-color: var(--color-dorado);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--color-crema);
+  }
 
   /* Modal: dos columnas (imagen | info) y centrado con margen */
   .modal-producto {
