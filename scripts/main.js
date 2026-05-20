@@ -322,7 +322,62 @@
       });
     }
   }
+// -----------------------------------------------------------
+  // Filtros por categoría (productos-agricolas.html).
+  // Los botones .chip-formato dentro de [data-filtros] desplazan la página
+  // hasta la sección con data-categoria correspondiente. "Todas" lleva al
+  // inicio del catálogo. Tiene en cuenta el header sticky y la propia barra
+  // de filtros sticky para calcular el offset.
+  // -----------------------------------------------------------
+  function inicializarFiltrosCategoria() {
+    const barra = document.querySelector('[data-filtros]');
+    if (!barra) return;
 
+    const selectorObjetivo = barra.getAttribute('data-filtros-objetivo') || '[data-categoria]';
+    const botones = Array.from(barra.querySelectorAll('.chip-formato[data-filtro]'));
+    if (botones.length === 0) return;
+
+    const calcularOffset = () => {
+      const header = document.querySelector('.encabezado');
+      const filtros = barra;
+      const hHeader = header ? header.getBoundingClientRect().height : 0;
+      // La barra de filtros es sticky pegada al header, así que la sumamos
+      // también para que la sección quede claramente bajo ella.
+      const hFiltros = filtros ? filtros.getBoundingClientRect().height : 0;
+      return hHeader + hFiltros + 8;
+    };
+
+    const irASeccion = (filtro) => {
+      // "todas": al inicio del primer bloque del catálogo
+      let destino;
+      if (filtro === 'todas') {
+        destino = document.querySelector(selectorObjetivo);
+      } else {
+        destino = document.querySelector(`${selectorObjetivo}[data-categoria="${filtro}"]`);
+      }
+      if (!destino) return;
+      const offset = calcularOffset();
+      const y = destino.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    };
+
+    const activar = (botonActivo) => {
+      botones.forEach((b) => {
+        const esActivo = b === botonActivo;
+        b.classList.toggle('chip-formato--activo', esActivo);
+        b.setAttribute('aria-pressed', esActivo ? 'true' : 'false');
+      });
+    };
+
+    botones.forEach((boton) => {
+      boton.addEventListener('click', (e) => {
+        e.preventDefault();
+        const filtro = boton.getAttribute('data-filtro');
+        activar(boton);
+        irASeccion(filtro);
+      });
+    });
+  }
   // -----------------------------------------------------------
   // Arranque
   // -----------------------------------------------------------
