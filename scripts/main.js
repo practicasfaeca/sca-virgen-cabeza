@@ -392,5 +392,6 @@
     actualizarContadorCarrito();
     inicializarReactividadCarrito();
     inicializarAcceso();
+   inicializarFiltrosCategoria();
   });
 })();
